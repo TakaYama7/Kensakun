@@ -6,11 +6,21 @@ import os
 import faiss
 from typing import List, Dict, Tuple
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
+
+# .envファイルをロード
+load_dotenv()
 
 # --- 1. 設定値（ユーザーごとに置き換えてください） ---
 # ⚠️ チーム名をサブドメイン部分のみに修正してください
-ESA_TEAM_NAME = "cs18a"
-ESA_ACCESS_TOKEN = "Id6WLrpYfGhF8-l0MsuMI--55xUwn3JfTYmzXVZWpHo"
+ESA_TEAM_NAME = os.getenv("ESA_TEAM_NAME")
+ESA_ACCESS_TOKEN = os.getenv("ESA_ACCESS_TOKEN")
+
+# キーが設定されていない場合にエラーを出す（安全策）
+if not ESA_TEAM_NAME or not ESA_ACCESS_TOKEN:
+    raise ValueError(
+        "環境変数 ESA_TEAM_NAME または ESA_ACCESS_TOKEN が設定されていません。.envファイルを確認してください。"
+    )
 
 # URLはf-stringで正しく構築されます
 ESA_API_BASE_URL = f"https://api.esa.io/v1/teams/{ESA_TEAM_NAME}"

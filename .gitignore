@@ -1,2 +1,4 @@
-Kensakun/esa_data_cache.json
 Kensakun/__pycache__
+Kensakun/*.json
+Kensakun/*.bin
+Kensakun/*.db
