@@ -7,3 +7,4 @@ tiktoken
 transformers
 torch
 streamlit
+python-dotenv
